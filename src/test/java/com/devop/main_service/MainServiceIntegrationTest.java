@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Teste de integração básico para Main Service
  * Verifica se o contexto Spring carrega corretamente
  */
-@SpringBootTest(classes = TestMainServiceApplication.class)
+@SpringBootTest(classes = MainServiceApplication.class)
 @ActiveProfiles("test")
 @TestPropertySource(locations = "classpath:application-test.properties")
 class MainServiceIntegrationTest {
@@ -26,14 +26,14 @@ class MainServiceIntegrationTest {
     @Test
     void applicationShouldStart() {
         // Verifica se a aplicação pode ser instanciada
-        TestMainServiceApplication app = new TestMainServiceApplication();
+        MainServiceApplication app = new MainServiceApplication();
         assertNotNull(app, "Aplicação deve ser instanciada corretamente");
     }
 
     @Test
     void mainMethodExists() throws NoSuchMethodException {
         // Verifica se o método main existe e é público/estático
-        var mainMethod = TestMainServiceApplication.class.getMethod("main", String[].class);
+        var mainMethod = MainServiceApplication.class.getMethod("main", String[].class);
         assertNotNull(mainMethod, "Método main deve existir");
         assertTrue(java.lang.reflect.Modifier.isStatic(mainMethod.getModifiers()), "Método main deve ser estático");
         assertTrue(java.lang.reflect.Modifier.isPublic(mainMethod.getModifiers()), "Método main deve ser público");
