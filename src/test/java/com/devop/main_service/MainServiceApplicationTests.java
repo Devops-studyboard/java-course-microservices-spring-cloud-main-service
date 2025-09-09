@@ -1,4 +1,4 @@
-package com.devops.main_service;
+package com.devop.main_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
