@@ -1,0 +1,73 @@
+# Configurações para testes
+spring:
+  application:
+    name: main-service-test
+  
+  # Configuração do banco H2 em memória
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  
+  h2:
+    console:
+      enabled: false
+  
+  # Desabilitar Config Server nos testes
+  cloud:
+    config:
+      enabled: false
+      server:
+        git:
+          uri: classpath:/config-repo
+    
+    # Desabilitar service discovery
+    discovery:
+      enabled: false
+    
+    # Desabilitar Netflix Eureka completamente
+    netflix:
+      eureka:
+        enabled: false
+  
+  # Desabilitar autoconfiguration problemática
+  autoconfigure:
+    exclude:
+      - org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration
+      - org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration
+
+# Desabilitar Eureka
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    enabled: false
+  instance:
+    hostname: localhost
+  server:
+    enable-self-preservation: false
+    enabled: false
+
+# Configurações de logging para testes
+logging:
+  level:
+    org.springframework.cloud: WARN
+    org.springframework.boot: WARN
+    com.netflix.eureka: WARN
+    com.netflix.discovery: WARN
+    root: WARN
+
+# Desabilitar actuator endpoints desnecessários nos testes
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
