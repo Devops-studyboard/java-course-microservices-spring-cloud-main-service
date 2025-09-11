@@ -1,7 +1,9 @@
 package com.devop.main_service;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.netflix.eureka.server.EurekaServerAutoConfiguration;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
@@ -14,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = MainServiceApplication.class)
 @ActiveProfiles("test")
 @TestPropertySource(locations = "classpath:application-test.properties")
+@EnableAutoConfiguration(exclude = {EurekaServerAutoConfiguration.class})
 class MainServiceIntegrationTest {
 
     @Test
